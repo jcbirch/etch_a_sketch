@@ -1,5 +1,25 @@
-#title{
+    #title{
     display: flex;
     justify-content: center;
 }
 
+    #the-screen {
+   margin: 5% 15% 10% 15%;
+  }
+    
+    .row {
+    display: grid;
+    height: 10%;
+  }
+
+    .box {
+    border: 0.5px solid rgba(0, 0, 0, 0.8);
+    background-color: white;
+    padding: 50%;
+    box-sizing: border-box;
+
+  }
+
+  /*.box:hover {
+      background-color: cornflowerblue;
+  }*/
