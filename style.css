@@ -14,8 +14,8 @@
     #reset-button {
         border: 2px solid black;
         border-radius: 0.25rem;
-        background: #2BCBE7;
-        color: white;
+        background: white;
+        color: black;
         font-size: 3vw;
         line-height: 2.0;
         white-space: nowrap;
@@ -28,7 +28,11 @@
     }
 
     #reset-button:hover {
-        background-color: #7DE1F3;
+        background-color: #ECECEC;
+    }
+
+    #reset-button:visited {
+        border: 2px solid black;
     }
 
     #the-screen {
