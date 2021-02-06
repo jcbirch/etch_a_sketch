@@ -1,33 +1,55 @@
-function createScreen() {
-    
-    for (let i = 1; i <= 16; i++) {
+const resetButton = document.querySelector("#reset-button");
+const theScreen = document.querySelector("#the-screen");
+
+window.addEventListener("load", starterGridCount);
+resetButton.addEventListener("click", createNewScreen);
+
+function starterGridCount() {
+    createScreen(16);
+}
+
+function createScreen(gridSize) {
+    for (let i = 0; i < gridSize * gridSize; i++) {
         const row = document.createElement("div");
-        row.id = "row" + i;
         row.classList.add("row");
-        const rowStyle = document.querySelector(".row")
-        row.style.gridTemplateColumns = "repeat(16, auto)";
-        const elementOne = document.getElementById("the-screen");
-        elementOne.appendChild(row);
-        for (let j = 1; j <= 16; j++) {
-            const box = document.createElement("div");
-            box.classList.add("box");
-            const elementTwo = document.getElementById("row" + i);
-            elementTwo.appendChild(box);
-            changeBoxColor();
-        }
-        
+        theScreen.appendChild(row);
+        theScreen.style.gridTemplateColumns = `repeat(${gridSize}, auto)`;
+
+    }
+    changeBoxColor();
+}
+
+function createNewScreen() {
+    removeGrid();
+    let newGridSize = prompt("Put in a number between 1 and 64");
+    newGridSize = parseInt(newGridSize);
+    if (newGridSize === undefined) {
+        createNewScreen();
+    } if (newGridSize < 1 || newGridSize > 64 || isNaN(newGridSize)) {
+        alert("Needs to be a number between 1 and 64!")
+        createNewScreen();
+    } else {
+        createScreen(newGridSize);
     }
 }
 
+function removeGrid() {
+    const gridArray = Array.from(theScreen.childNodes);
+    gridArray.forEach((element) => {
+        theScreen.removeChild(element);
+    });
+}
 
 function changeBoxColor() {
-    document.querySelectorAll('.box').forEach(item => {
-        item.addEventListener('mouseover', event => {
-            item.style.backgroundColor = "green";
+
+    document.querySelectorAll('.row').forEach(item => {
+        item.addEventListener('mouseover', event => {      
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            let rgb = "rgb(" + r + "," + g + "," + b + ")"
+            item.style.backgroundColor = `${rgb}`;
         })
     })
 
 }
-
-
-createScreen();
